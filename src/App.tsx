@@ -346,7 +346,7 @@ function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-gray-300">info@yaksoftware.com</p>
+                    <p className="text-gray-300">info@yaksofts.com</p>
                   </div>
                 </div>
               </div>
