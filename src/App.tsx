@@ -351,7 +351,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
+              {/* <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
                     <Phone className="h-6 w-6" />
@@ -361,7 +361,7 @@ function App() {
                     <p className="text-gray-300">+1 (555) 123-4567</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
                 <div className="flex items-center space-x-4 mb-4">
@@ -370,7 +370,7 @@ function App() {
                   </div>
                   <div>
                     <h4 className="font-semibold">Office</h4>
-                    <p className="text-gray-300">123 Tech Street, Innovation City</p>
+                    <p className="text-gray-300">Nizampet, Hyderabad</p>
                   </div>
                 </div>
               </div>
