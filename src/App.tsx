@@ -42,18 +42,24 @@ function App() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json().catch(() => ({}));
+      const result = await response
+        .json()
+        .catch(() => ({ success: false }));
 
-      if (!response.ok || result.success !== 'true') {
+      if (
+        !response.ok ||
+        (result.success !== true && result.success !== 'true')
+      ) {
         throw new Error(
-          result.message || `Request failed with status ${response.status}`
+          (result && result.message) ||
+            `Request failed with status ${response.status}`
         );
       }
 
-      form.reset();
       alert(
         'Your Response has been submitted!!, Please allow us some time my team will reach out to you ASAP.'
       );
+      form.reset();
     } catch (error) {
       console.error('Error sending message', error);
       alert('There was an error submitting your message. Please try again later.');
