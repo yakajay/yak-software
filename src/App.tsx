@@ -30,8 +30,9 @@ function App() {
       subject: formData.get('subject'),
       message: formData.get('message'),
     };
+
     try {
-      await fetch('https://formsubmit.co/ajax/info@yaksofts.com', {
+      const response = await fetch('https://formsubmit.co/ajax/info@yaksofts.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,6 +40,11 @@ function App() {
         },
         body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
       alert(
         'Your Response has been submitted!!, Please allow us some time my team will reach out to you ASAP.'
       );
