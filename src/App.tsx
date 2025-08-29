@@ -4,6 +4,7 @@ import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, MapPin,
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const logoPath = "/yak-logo.png";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +32,7 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img
-                src="/yak-logo.png"
+                src={logoPath}
                 alt="Yak Software Solutions logo"
                 className="h-16 w-auto"
               />
@@ -382,9 +383,9 @@ function App() {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <img
-                src="/yak-logo.png"
+                src={logoPath}
                 alt="Yak Software Solutions logo"
-                className="h-8 w-auto"
+                className="h-16 w-auto"
               />
               <span className="text-2xl font-bold">Yak Software Solutions</span>
             </div>
