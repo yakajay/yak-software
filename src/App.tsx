@@ -33,7 +33,7 @@ function App() {
               <img
                 src="/yak-logo.png"
                 alt="Yak Software Solutions logo"
-                className="h-10 w-auto"
+                className="h-16 w-auto"
               />
             </div>
 
@@ -381,9 +381,11 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-lg flex items-center justify-center">
-                <Code className="h-6 w-6 text-white" />
-              </div>
+              <img
+                src="/yak-logo.png"
+                alt="Yak Software Solutions logo"
+                className="h-8 w-auto"
+              />
               <span className="text-2xl font-bold">Yak Software Solutions</span>
             </div>
             <p className="text-gray-400 mb-4">
