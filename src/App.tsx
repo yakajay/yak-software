@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, Phone, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
+import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const logoPath = "/yak-logo.png";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,51 @@ function App() {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@yaksofts.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response
+        .json()
+        .catch(() => ({ success: false }));
+
+      if (
+        !response.ok ||
+        (result.success !== true && result.success !== 'true')
+      ) {
+        throw new Error(
+          (result && result.message) ||
+            `Request failed with status ${response.status}`
+        );
+      }
+
+      alert(
+        'Your Response has been submitted!!, Please allow us some time my team will reach out to you ASAP.'
+      );
+      form.reset();
+    } catch (error) {
+      console.error('Error sending message', error);
+      alert('There was an error submitting your message. Please try again later.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -29,15 +75,12 @@ function App() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-lg flex items-center justify-center">
-                <Code className="h-6 w-6 text-white" />
-              </div>
-              <span className={`text-xl font-bold transition-colors ${
-                scrolled ? 'text-gray-900' : 'text-white'
-              }`}>
-                Yak Software Solutions
-              </span>
+            <div className="flex items-center">
+              <img
+                src={logoPath}
+                alt="Yak Software Solutions logo"
+                className="h-40 w-auto"
+              />
             </div>
 
             {/* Desktop Menu */}
@@ -155,7 +198,7 @@ function App() {
 
         {/* Floating Elements */}
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-gray-600 rounded-full opacity-20 animate-pulse animation-delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#76b445] rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-40 bg-[#76b445] rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
       </section>
 
       {/* Services Section */}
@@ -211,7 +254,7 @@ function App() {
             ].map((service, index) => (
               <div key={index} className="group">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 h-full">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-40 bg-gradient-to-r ${service.gradient} rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
@@ -293,20 +336,24 @@ function App() {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-xl shadow-2xl p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
+                        name="name"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                      <input 
-                        type="email" 
+                      <input
+                        type="email"
+                        name="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors"
                         placeholder="your@email.com"
                       />
@@ -314,21 +361,25 @@ function App() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
+                      name="subject"
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors"
                       placeholder="Project inquiry"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                    <textarea 
+                    <textarea
                       rows={6}
+                      name="message"
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors resize-none"
                       placeholder="Tell us about your project..."
                     ></textarea>
                   </div>
-                  <button 
+                  <button
                     type="submit"
                     className="w-full bg-[#76b445] hover:bg-[#5a8a33] text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-300 transform hover:scale-[1.02]"
                   >
@@ -384,9 +435,11 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-lg flex items-center justify-center">
-                <Code className="h-6 w-6 text-white" />
-              </div>
+              <img
+                src={logoPath}
+                alt="Yak Software Solutions logo"
+                className="h-40 w-auto"
+              />
               <span className="text-2xl font-bold">Yak Software Solutions</span>
             </div>
             <p className="text-gray-400 mb-4">
