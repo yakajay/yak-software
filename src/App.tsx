@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, Phone, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
+import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const logoPath = "/yak-logo.png";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,15 +30,12 @@ function App() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-lg flex items-center justify-center">
-                <Code className="h-6 w-6 text-white" />
-              </div>
-              <span className={`text-xl font-bold transition-colors ${
-                scrolled ? 'text-gray-900' : 'text-white'
-              }`}>
-                Yak Software Solutions
-              </span>
+            <div className="flex items-center">
+              <img
+                src={logoPath}
+                alt="Yak Software Solutions logo"
+                className="h-40 w-auto"
+              />
             </div>
 
             {/* Desktop Menu */}
@@ -155,7 +153,7 @@ function App() {
 
         {/* Floating Elements */}
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-gray-600 rounded-full opacity-20 animate-pulse animation-delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#76b445] rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-40 bg-[#76b445] rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
       </section>
 
       {/* Services Section */}
@@ -211,7 +209,7 @@ function App() {
             ].map((service, index) => (
               <div key={index} className="group">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 h-full">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-40 bg-gradient-to-r ${service.gradient} rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
@@ -384,9 +382,11 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-lg flex items-center justify-center">
-                <Code className="h-6 w-6 text-white" />
-              </div>
+              <img
+                src={logoPath}
+                alt="Yak Software Solutions logo"
+                className="h-40 w-auto"
+              />
               <span className="text-2xl font-bold">Yak Software Solutions</span>
             </div>
             <p className="text-gray-400 mb-4">
