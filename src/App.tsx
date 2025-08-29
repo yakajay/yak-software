@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, Phone, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
+import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,6 +18,34 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+    try {
+      await fetch('https://formsubmit.co/ajax/info@yaksofts.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      alert(
+        'Your Response has been submitted!!, Please allow us some time my team will reach out to you ASAP.'
+      );
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error('Error sending message', error);
+      alert('There was an error submitting your message. Please try again later.');
     }
   };
 
@@ -293,20 +321,24 @@ function App() {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-xl shadow-2xl p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
+                        name="name"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                      <input 
-                        type="email" 
+                      <input
+                        type="email"
+                        name="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors"
                         placeholder="your@email.com"
                       />
@@ -314,21 +346,25 @@ function App() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
+                      name="subject"
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors"
                       placeholder="Project inquiry"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                    <textarea 
+                    <textarea
                       rows={6}
+                      name="message"
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#76b445] focus:border-transparent transition-colors resize-none"
                       placeholder="Tell us about your project..."
                     ></textarea>
                   </div>
-                  <button 
+                  <button
                     type="submit"
                     className="w-full bg-[#76b445] hover:bg-[#5a8a33] text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-300 transform hover:scale-[1.02]"
                   >
