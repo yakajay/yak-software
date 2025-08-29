@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, Phone, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
+import { Menu, X, Code, Smartphone, Globe, Database, Cloud, Users, Mail, MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,15 +29,12 @@ function App() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-lg flex items-center justify-center">
-                <Code className="h-6 w-6 text-white" />
-              </div>
-              <span className={`text-xl font-bold transition-colors ${
-                scrolled ? 'text-gray-900' : 'text-white'
-              }`}>
-                Yak Software Solutions
-              </span>
+            <div className="flex items-center">
+              <img
+                src="/yak-logo.png"
+                alt="Yak Software Solutions logo"
+                className="h-10 w-auto"
+              />
             </div>
 
             {/* Desktop Menu */}
