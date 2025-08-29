@@ -34,7 +34,7 @@ function App() {
               <img
                 src={logoPath}
                 alt="Yak Software Solutions logo"
-                className="h-16 w-auto"
+                className="h-40 w-auto"
               />
             </div>
 
@@ -153,7 +153,7 @@ function App() {
 
         {/* Floating Elements */}
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-gray-600 rounded-full opacity-20 animate-pulse animation-delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#76b445] rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-40 bg-[#76b445] rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
       </section>
 
       {/* Services Section */}
@@ -209,7 +209,7 @@ function App() {
             ].map((service, index) => (
               <div key={index} className="group">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 h-full">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-40 bg-gradient-to-r ${service.gradient} rounded-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
@@ -385,7 +385,7 @@ function App() {
               <img
                 src={logoPath}
                 alt="Yak Software Solutions logo"
-                className="h-16 w-auto"
+                className="h-40 w-auto"
               />
               <span className="text-2xl font-bold">Yak Software Solutions</span>
             </div>
